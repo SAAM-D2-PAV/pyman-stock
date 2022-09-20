@@ -1,5 +1,5 @@
 # GDP | PYMAN STOCK 
-## Vidéothèques 
+## Gestion du stock audiovisuel 
 > version Alpha - 2022205
 <br/></br>
 Pyman stock est une application développée par le pôle audiovisuel du SAAM D2 (service de l'action administrative et des moyens) de l'administration centrale. https://www.education.gouv.fr/service-de-l-action-administrative-et-des-moyens-saam-6818
