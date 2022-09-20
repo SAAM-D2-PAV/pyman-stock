@@ -1,0 +1,30 @@
+@font-face {
+  font-family: "font-1";
+  src: url(../assets/fonts/marianne-light-webfont.woff);
+}
+
+$font-1: "font-1", sans-serif;
+
+
+@mixin verticalCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: white;
+  font-family: $font-1;
+  color: black;
+  // @include verticalCenter;
+}
+
+li {
+  list-style-type: none;
+}
