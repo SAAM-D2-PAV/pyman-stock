@@ -8,7 +8,7 @@ import axios from "axios";
 const Tasks = () => {
     // Le useEffect se joue lorsque le composant est monté
     useEffect(() =>{
-        axios.get("https://127.0.0.1:8000/lmrdcrom_!/api/task").then((res)=>console.log(res))
+        axios.get("https://127.0.0.1:8000/api/tasks").then((res)=>console.log(res.data))
     },[])
 
     return (
