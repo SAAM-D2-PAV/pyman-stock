@@ -11,7 +11,7 @@ const Navigation = () => {
         <div className='navigation'>
             <ul className='nav justify-content-center'>
 
-                <NavLink to={"/"} className={(nav) =>(nav.isActive ? "nav-active" : "")}>
+                <NavLink to={"/accueil"} className={(nav) =>(nav.isActive ? "nav-active" : "")}>
                     <li className='nav-item'>Accueil</li>
                 </NavLink>
                 <NavLink to={"/a-propos"} className={(nav) =>(nav.isActive ? "nav-active" : "")}>
