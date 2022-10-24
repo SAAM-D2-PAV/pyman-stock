@@ -4,28 +4,37 @@ import axios from "axios";
 import Logo from '../components/Logo';
 import Navigation from '../components/Navigation';
 import { Link } from 'react-router-dom';
+import Task from './Task';
 
 
 const Tasks = () => {
-    const [data,setData] = useState([]);
-    // Le useEffect se joue lorsque le composant est monté
-    useEffect(() =>{
+
+    const [tasksData,setTasksData] = useState([]);
+    
+    const getTasks = () => {
         axios
-            .get("http://127.0.0.1:8000/api/tasks")
-            .then((res)=>setData(res.data))
-    },[])
+        .get("http://127.0.0.1:8000/api/tasks?status=A%20faire")
+        .then((res)=>setTasksData(res.data['hydra:member']));
+    }
+    // Le useEffect se joue lorsque le composant est monté  
+    useEffect(() => getTasks(), [])
 
     return (
         <div className="tasks">
-            <Logo/>
+        
             <Navigation/>
             <div className="container">
-                <h1>Tâches</h1>
-                <ul>
-                    {
-                       
-                    }
-                </ul>
+                <div className="raw">
+                
+                <div className="picture col-3"></div>
+                <h3>Toutes les tâches</h3>
+                {
+                    tasksData.map(
+
+                        (task) => <Task key={task.id} task={task} />
+                    )
+                }
+                </div>
             </div>
         </div>
     );

@@ -8,7 +8,7 @@ import Navigation from '../components/Navigation';
 const Home = () => {
     return (
         <div>
-            <Logo/>
+         
             <Navigation/>
             <div className="container">
                 <h1>Accueil</h1>

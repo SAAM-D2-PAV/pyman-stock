@@ -2,5 +2,15 @@
 @import "./settings";
 @import "./components/navigation";
 @import "./components/logo";
-@import "./components/countries";
-@import "./components/card";
+@import "./components/task";
+@import "./components/tasks";
+
+
+
+h1{
+    color: $pastel_chart_0;
+    margin: 35px 0;
+}
+h3{
+    margin: 0 0 20px 0;
+}

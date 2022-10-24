@@ -19,9 +19,9 @@ $font-1: "font-1", sans-serif;
 }
 
 body {
-  background: white;
+  background: $bluebell;
   font-family: $font-1;
-  color: black;
+  color: white;
   // @include verticalCenter;
 }
 

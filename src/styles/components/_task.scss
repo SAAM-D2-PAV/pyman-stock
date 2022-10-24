@@ -1,0 +1,16 @@
+.task .card{
+    width: 18rem;
+    height: 150px;
+   float: left;
+   margin: 5px;
+   color: black;
+   &:hover{
+    background-color: $pastel_chart_0;
+    color: white;
+    animation-name : fade;
+    -moz-animation-name: fade;
+    -webkit-animation-name: fade;
+    
+    
+   }
+}

@@ -1,5 +1,5 @@
 .navigation {
-  color: black;
+ color: white;
   ul {
     display: flex;
     margin: 30px;
@@ -9,12 +9,12 @@
       padding: 10px;
 
       li {
-        color: black;
+        color: white;
         transition: 0.2s;
         cursor: pointer;
 
         &:hover {
-          color:$blue_chart_0;
+          color:$pastel_chart_0;
         }
       }
     }
@@ -23,11 +23,11 @@
       position: relative;
 
       &::after {
-        color: $blue_chart_0;
+        color: $pastel_chart_0;
         content: "";
         height: 4px;
         width: 0;
-        background: $blue_chart_0;
+        background: $pastel_chart_0;
         position: absolute;
         border-radius: 10px;
         bottom: 0px;
