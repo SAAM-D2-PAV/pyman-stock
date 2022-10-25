@@ -1,6 +1,20 @@
-.task .task-wrapper{
+//Composant ThumbnailTask.js
+.th-task .th-task-wrapper{
    color: black;
 }
+//Composant Task.js
+.task h4{
+    margin-bottom: 30px;
+}
+.task .card{
+    margin-top: 20px;
+}
+.task .picture{
+    width: 200px;
+    height: 200px;
+    background-image: url(../../assets/images/Bullet-journal-bro.svg);
+}
+// All
 .red_flag{
     color:$red_flag;
 }
