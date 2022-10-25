@@ -1,8 +1,6 @@
 import React from 'react';
 
-
 // made components
-import Logo from '../components/Logo';
 import Navigation from '../components/Navigation';
 
 const Home = () => {

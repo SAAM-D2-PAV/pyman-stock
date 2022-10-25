@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-// made components
-import Logo from '../components/Logo';
-import Navigation from '../components/Navigation';
 import { Link } from 'react-router-dom';
-import Task from './Task';
+
+// made components
+import Navigation from '../components/Navigation';
+import ThumbnailTask from './ThumbnailTask';
 
 
 const Tasks = () => {
@@ -42,7 +42,7 @@ const Tasks = () => {
                                 .sort((a,b) => (b.date - a.date))
                                 .map(
                                 //On utilise le composant <Task/> pour fractionner le code
-                                (task) => <Task key={task.id} task={task} />
+                                (task) => <ThumbnailTask key={task.id} task={task} />
                             )
                         }
                         
