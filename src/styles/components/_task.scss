@@ -1,16 +1,10 @@
-.task .card{
-    width: 18rem;
-    height: 150px;
-   float: left;
-   margin: 5px;
+.task .task-wrapper{
    color: black;
-   &:hover{
-    background-color: $pastel_chart_0;
+}
+.red_flag{
+    color:$red_flag;
+}
+.blue_chart_0_bg{
+    background-color:$blue_chart_0;
     color: white;
-    animation-name : fade;
-    -moz-animation-name: fade;
-    -webkit-animation-name: fade;
-    
-    
-   }
 }

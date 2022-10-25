@@ -8,32 +8,44 @@ import Task from './Task';
 
 
 const Tasks = () => {
-
+    //Variables et Fonctions du composant
+    
+    //Variable tasksData (tableau vide) -> stockage des taches récupérées par axios
     const [tasksData,setTasksData] = useState([]);
     
+    //Requète vers API
     const getTasks = () => {
         axios
+        //On récupère les taches
         .get("http://127.0.0.1:8000/api/tasks?status=A%20faire")
+        //Puis on les charge dans tasksData via setTasksData
         .then((res)=>setTasksData(res.data['hydra:member']));
     }
-    // Le useEffect se joue lorsque le composant est monté  
+    // Le useEffect se joue lorsque le composant est monté au chargement de la page
+    // Ici on lance la fonction getTasks
     useEffect(() => getTasks(), [])
 
     return (
         <div className="tasks">
         
             <Navigation/>
-            <div className="container">
-                <div className="raw">
+            <div className="container text-center">
+                
                 
                 <div className="picture col-3"></div>
                 <h3>Toutes les tâches</h3>
-                {
-                    tasksData.map(
-
-                        (task) => <Task key={task.id} task={task} />
-                    )
-                }
+                <div className="row g-2">
+                    
+                        {
+                            //Boucle sur le tableau de tasks tasksData[]
+                            tasksData
+                                .sort((a,b) => (b.date - a.date))
+                                .map(
+                                //On utilise le composant <Task/> pour fractionner le code
+                                (task) => <Task key={task.id} task={task} />
+                            )
+                        }
+                        
                 </div>
             </div>
         </div>
