@@ -15,12 +15,13 @@ const Navigation = () => {
                 <NavLink to={"/accueil"} className={(nav) =>(nav.isActive ? "nav-active" : "")}>
                     <li className='nav-item'>Accueil</li>
                 </NavLink>
-                <NavLink to={"/a-propos"} className={(nav) =>(nav.isActive ? "nav-active" : "")}>
-                    <li className='nav-item'>A propos</li>
-                </NavLink>
                 <NavLink to={"/taches"} className={(nav) =>(nav.isActive ? "nav-active" : "")}>
                     <li className='nav-item'>Tâches</li>
                 </NavLink>
+                <NavLink to={"/a-propos"} className={(nav) =>(nav.isActive ? "nav-active" : "")}>
+                    <li className='nav-item'>A propos</li>
+                </NavLink>
+
             </ul>
         </div>
     );

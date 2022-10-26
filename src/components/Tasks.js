@@ -32,15 +32,19 @@ const Tasks = () => {
         
             <Navigation/>
             <div className="container text-center">
-                
-                
-                <div className="picture col-3"></div>
-                <h3>Toutes les tâches</h3>
 
-                <div className="input-group mb-3">
-                    <span className="input-group-text"><i className="fa-solid fa-magnifying-glass"></i></span>
-                    <input type="text" className="form-control" placeholder="rechercher une tâche" onChange={(e) => setInputSearch(e.target.value)}/>
+                <h3>Toutes les tâches à faire sur Pyman</h3>
+                <div className="picture mb-3"></div>
+
+                <div className="row">
+                    <div className="col-md-4"></div>
+                    <div className="input-group mb-3 col-md-4">
+                        <span className="input-group-text"><i className="fa-solid fa-magnifying-glass"></i></span>
+                        <input type="text" className="form-control" placeholder="rechercher une tâche" onChange={(e) => setInputSearch(e.target.value)}/>
+                    </div>
+                    <div className="col-md-4"></div>
                 </div>
+
 
                 <div className="row g-2">
 

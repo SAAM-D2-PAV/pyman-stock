@@ -40,7 +40,12 @@ const ThumbnailTask = ({task}) => {
                 <h5 className="th-task-title">{task.name}</h5>
                 <h6 className="card-subtitle mb-2 imperial_primer">Du {dateFormater(task.startDate)} à {hourFormater(task.startHour)} </h6>
                 <h6 className="card-subtitle mb-2 red_flag">Au {dateFormater(task.endDate)} à {hourFormater(task.endHour)}</h6>
-                 <li key={task.id}> <Link to={`../tache/${task.id}`}> <i className="fa-solid fa-plus-minus"></i> {task.id} </Link> </li> 
+                <button key={task.id} className="btn btn-info">
+                    <Link to={`../tache/${task.id}`} className="linkBtn">
+                        voir <i className="fa-solid fa-plus"></i>
+                    </Link>
+                </button>
+
             </div>
         </div>
        </div>

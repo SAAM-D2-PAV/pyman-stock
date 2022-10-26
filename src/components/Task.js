@@ -25,6 +25,7 @@ const Task = () => {
         <div className='task'>
             <Navigation/> 
             <div className="container text-center">
+                <div className="picture col-3"></div>
                 <h3>Tâche {taskData.id}</h3>
                 <h4 className='red_flag'> {taskData.name} </h4>
                 {/*on vérifie l'existance de taskData.project avec && {taskData.project && taskData.project.name}*/}
