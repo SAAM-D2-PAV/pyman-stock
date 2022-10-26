@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import { Link } from 'react-router-dom';
+
 
 // made components
 import Navigation from '../components/Navigation';
@@ -12,18 +12,20 @@ const Tasks = () => {
     
     //Variable tasksData (tableau vide) -> stockage des taches récupérées par axios
     const [tasksData,setTasksData] = useState([]);
+    const [inputSearch, setInputSearch] = useState("");
     
     //Requète vers API
     const getTasks = () => {
         axios
         //On récupère les taches
-        .get("http://127.0.0.1:8000/api/tasks?status=A%20faire")
+        .get("https://127.0.0.1:8000/api/tasks?status=A%20faire&name=" + inputSearch)
         //Puis on les charge dans tasksData via setTasksData
         .then((res)=>setTasksData(res.data['hydra:member']));
+
     }
     // Le useEffect se joue lorsque le composant est monté au chargement de la page
-    // Ici on lance la fonction getTasks
-    useEffect(() => getTasks(), [])
+    // Ici on lance la fonction getTasks et on relance grace au callBack quand inputSearch est modifié
+    useEffect(() => getTasks(),[inputSearch])
 
     return (
         <div className="tasks">
@@ -34,12 +36,20 @@ const Tasks = () => {
                 
                 <div className="picture col-3"></div>
                 <h3>Toutes les tâches</h3>
+
+                <div className="input-group mb-3">
+                    <span className="input-group-text"><i className="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" className="form-control" placeholder="rechercher une tâche" onChange={(e) => setInputSearch(e.target.value)}/>
+                </div>
+
                 <div className="row g-2">
-                    
+
                         {
                             //Boucle sur le tableau de tasks tasksData[]
                             tasksData
+                                //classer les tâches par dates
                                 .sort((a,b) => (b.date - a.date))
+                                //On bloucle sur le tableau taskData
                                 .map(
                                 //On utilise le composant <Task/> pour fractionner le code
                                 (task) => <ThumbnailTask key={task.id} task={task} />

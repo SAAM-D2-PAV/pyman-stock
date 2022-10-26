@@ -15,25 +15,11 @@ const Task = () => {
 
     //Variable taskData (tableau vide) -> stockage de la tache récupérée par axios
     const [taskData,setTaskData] = useState([]);
-    //Variable projectData (tableau vide) -> stockage du projet lié à la tâche par axios
-   
-   
-    //Requète vers API
-    const getData = () => {
-        axios
-        //On récupère la tache
-        .get(`http://127.0.0.1:8000/api/tasks/${id}`)
-        //Puis on les charge dans tasksData via setTasksData
-        .then(
-
-            (res)=>setTaskData(res.data)
-      
-
-        )
-    }
-
-   useEffect( () => getData(), [] ) 
-   
+    //lancé une fois le DOM chargé grave au []
+   useEffect( () => {
+       //On récupère la tache
+       axios.get(`https://127.0.0.1:8000/api/tasks/${id}`).then( (res)=> setTaskData(res.data));
+   },[])
 
     return (
         <div className='task'>
@@ -41,7 +27,8 @@ const Task = () => {
             <div className="container text-center">
                 <h3>Tâche {taskData.id}</h3>
                 <h4 className='red_flag'> {taskData.name} </h4>
-                <h6 className="card-subtitle mb-2 imperial_primer">projet :  </h6>
+                {/*on vérifie l'existance de taskData.project avec && {taskData.project && taskData.project.name}*/}
+                <h6 className="card-subtitle mb-2 imperial_primer">projet : {taskData.project && taskData.project.name} </h6>
                 <div className="row">
                     <div className="col-6">
                         <div className="card">
