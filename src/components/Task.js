@@ -1,10 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // made components
 import Navigation from '../components/Navigation';
-
+//Fonctions globales du composant AppFunction.js
+import { dateFormater } from './AppFunction';
+import { hourFormater } from './AppFunction';
   
 const Task = () => {
     //Variables et Fonctions du composant
@@ -18,44 +21,54 @@ const Task = () => {
     //lancé une fois le DOM chargé grave au []
    useEffect( () => {
        //On récupère la tache
-       axios.get(`https://127.0.0.1:8000/api/tasks/${id}`).then( (res)=> setTaskData(res.data));
-   },[])
+       axios.get(`http://127.0.0.1:8000/api/tasks/${id}`).then( (res)=> setTaskData(res.data));
+   },)
 
     return (
-        <div className='task'>
-            <Navigation/> 
-            <div className="container text-center">
-                <div className="picture col-3"></div>
-                <h3>Tâche {taskData.id}</h3>
-                <h4 className='red_flag'> {taskData.name} </h4>
-                {/*on vérifie l'existance de taskData.project avec && {taskData.project && taskData.project.name}*/}
-                <h6 className="card-subtitle mb-2 imperial_primer">projet : {taskData.project && taskData.project.name} </h6>
-                <div className="row">
-                    <div className="col-6">
-                        <div className="card">
-                           
-                            <div className="card-body">
-                                <h5 className="card-title">Card title</h5>
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item">An item</li>
-                                <li className="list-group-item">A second item</li>
-                                <li className="list-group-item">A third item</li>
-                            </ul>
-                            <div className="card-body">
-                                <a href="#" className="card-link">Card link</a>
-                                <a href="#" className="card-link">Another link</a>
+           
+            <div className='task'>
+
+                <Navigation/> 
+                
+                <div className="container text-center">
+    
+                    <h3>Tâche {taskData.id}</h3>
+                    <h4 className='red_flag'> {taskData.name} </h4>
+                    {/*on vérifie l'existance de taskData.project avec && {taskData.project && taskData.project.name}*/}
+                    <h5 className="card-subtitle mb-2 imperial_primer">{taskData.project && taskData.project.name} </h5>
+                    <div className="row">
+                        <div className="col">
+                            <div className="card">
+                            
+                                <div className="card-body">
+                                    <div className="picture"></div>
+                                    <h6>{ taskData.category && taskData.category.name }</h6>
+                                    <p className="card-text"> {dateFormater(taskData.startDate)} - {hourFormater(taskData.startHour)}</p>
+                                    <p className="card-text"> {dateFormater(taskData.endDate)} - {hourFormater(taskData.endHour)}</p>
+                                    <i> { taskData.location && taskData.location.name} </i>
+                                </div>
+                                <ul className="list-group list-group-flush">
+                                    <h4 className='mt-3'>Matériel</h4>
+                                    {
+                                       taskData.equipment && taskData.equipment
+                                            .map((equipment) => <li key={equipment.identificationCode} className="list-group-item">{equipment.name}</li>)
+                                    }
+                                    
+                                 
+                                </ul>
+                                <div className="card-body">
+                                    <button className="btn btn-success">
+                                        <Link to="" className="linkBtn">
+                                            SCAN DEPART <i className='fa-solid fa-qrcode'></i>
+                                        </Link>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="col-6">
-                        <div className="picture col-3"></div>
+                        
                     </div>
                 </div>
             </div>
-            
-        </div>
     );
 };
 

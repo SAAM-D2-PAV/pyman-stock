@@ -2,27 +2,16 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { Link } from 'react-router-dom';
 
+//Fonctions globales du composant AppFunction.js
+import { dateFormater } from './AppFunction';
+import { hourFormater } from './AppFunction';
+
+
 const ThumbnailTask = ({task}) => {
     //Variables et Fonctions du composant
     //Variable tasksData (tableau vide) -> stockage des taches récupérées par axios
     //const [taskData,setTaskData] = useState([]);
-    //Formatage de la date
-    const dateFormater = (date) => {
-        let newDate = new Date(date).toLocaleDateString("fr-FR", {
-            year: "numeric",
-            month:"long",
-            day:"numeric"
-        })
-        return newDate;
-    }
-    //Formatage de l'heure
-    const hourFormater = (hour) => {
-        let newHour = new Date(hour).toLocaleTimeString("fr-FR", {
-            hour:"numeric",
-            minute:"numeric"
-        })
-        return newHour;
-    }
+   
     // //Fonction onclick affichage d'une tâche
     // const activateTask = (id) => {
     //     axios

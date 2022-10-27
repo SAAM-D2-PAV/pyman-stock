@@ -9,16 +9,16 @@ import ThumbnailTask from './ThumbnailTask';
 
 const Tasks = () => {
     //Variables et Fonctions du composant
-    
     //Variable tasksData (tableau vide) -> stockage des taches récupérées par axios
     const [tasksData,setTasksData] = useState([]);
+    //Variable initialement vide se remplie si le champs texte est modifié (recherche)
     const [inputSearch, setInputSearch] = useState("");
-    
+
     //Requète vers API
     const getTasks = () => {
         axios
         //On récupère les taches
-        .get("https://127.0.0.1:8000/api/tasks?status=A%20faire&name=" + inputSearch)
+        .get("http://127.0.0.1:8000/api/tasks?status=A%20faire&name=" + inputSearch)
         //Puis on les charge dans tasksData via setTasksData
         .then((res)=>setTasksData(res.data['hydra:member']));
 
@@ -35,7 +35,7 @@ const Tasks = () => {
 
                 <h3>Toutes les tâches à faire sur Pyman</h3>
                 <div className="picture mb-3"></div>
-
+               
                 <div className="row">
                     <div className="col-md-4"></div>
                     <div className="input-group mb-3 col-md-4">
@@ -50,7 +50,7 @@ const Tasks = () => {
 
                         {
                             //Boucle sur le tableau de tasks tasksData[]
-                            tasksData
+                            tasksData && tasksData
                                 //classer les tâches par dates
                                 .sort((a,b) => (b.date - a.date))
                                 //On bloucle sur le tableau taskData

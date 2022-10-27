@@ -8,15 +8,39 @@
 }
 //Composant Task.js
 .task h4{
-    margin-bottom: 30px;
+   
+    color: $green_chart_0;
+}
+
+.task h5{
+   
+}
+.task h6{
+    color: $blue_flag;
+}
+.task p{
+    color:$red_flag;
+}
+.task i{
+    color: black;
 }
 .task .card{
     margin-top: 20px;
 }
+
+
 .task .picture{
-    width: 200px;
-    height: 200px;
+    margin: auto;
+    width: 150px;
+    height: 150px;
     background-image: url(../../assets/images/Bullet-journal-bro.svg);
+}
+
+
+@media screen and (max-width: 300px) {
+    .task .picture{
+      display: none;
+    }
 }
 // All
 .red_flag{
