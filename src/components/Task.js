@@ -11,7 +11,7 @@ import { hourFormater } from './AppFunction';
   
 const Task = () => {
     //Variables et Fonctions du composant
-
+    
     // We can use the `useParams` hook here to access
     // the dynamic pieces of the URL.
     const {id} = useParams();
@@ -21,8 +21,11 @@ const Task = () => {
     //lancé une fois le DOM chargé grave au []
    useEffect( () => {
        //On récupère la tache
-       axios.get(`http://127.0.0.1:8000/api/tasks/${id}`).then( (res)=> setTaskData(res.data));
-   },)
+       axios.get(`http://127.0.0.1:8000/api/tasks/${id}`).then( 
+            (res)=> setTaskData(res.data),
+        );
+
+   })
 
     return (
            
@@ -49,16 +52,14 @@ const Task = () => {
                                 </div>
                                 <ul className="list-group list-group-flush">
                                     <h4 className='mt-3'>Matériel</h4>
-                                    {
-                                       taskData.equipment && taskData.equipment
-                                            .map((equipment) => <li key={equipment.identificationCode} className="list-group-item">{equipment.name}</li>)
-                                    }
-                                    
-                                 
+                                   {
+                                         taskData.equipment && taskData.equipment
+                                         .map((equipment) => <li key={equipment.id} className="list-group-item">{equipment.name}</li>)                               
+                                   }
                                 </ul>
                                 <div className="card-body">
                                     <button className="btn btn-success">
-                                        <Link to="" className="linkBtn">
+                                        <Link to={`../tache/${taskData.id}/add`} className="linkBtn">
                                             SCAN DEPART <i className='fa-solid fa-qrcode'></i>
                                         </Link>
                                     </button>

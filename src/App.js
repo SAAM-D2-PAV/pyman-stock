@@ -4,6 +4,8 @@ import About from './pages/About';
 import Home from './pages/Home';
 import Tasks from "./components/Tasks";
 import Task from './components/Task';
+import FormTemplate from './components/FormTemplate';
+import Add from './components/Add';
 const App = () => {
   return (
       <BrowserRouter>
@@ -12,6 +14,7 @@ const App = () => {
           <Route path='/a-propos' element={<About/>} />
           <Route path='/taches' element={<Tasks/>} />
           <Route path="tache/:id" element={<Task/>} />
+          <Route path="tache/:id/add" element={<Add/>} />
           {/* path='*' renvoyer une 404  */}
           <Route path='*' element={<Home/>} />
         </Routes>
