@@ -60,9 +60,10 @@ const Task = () => {
                                 <div className="card-body">
                                     <button className="btn btn-success">
                                         <Link to={`../tache/${taskData.id}/add`} className="linkBtn">
-                                            SCAN DEPART <i className='fa-solid fa-qrcode'></i>
+                                             <i className='fa-solid fa-qrcode fa-3x'></i>
                                         </Link>
                                     </button>
+                                    <p>scan</p>
                                 </div>
                             </div>
                         </div>
