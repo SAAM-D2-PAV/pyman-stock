@@ -4,8 +4,8 @@ import axios from "axios";
 
 // made components
 import Navigation from '../components/Navigation';
-import ThumbnailTask from './ThumbnailTask';
-
+import ThumbnailTask from '../components/task/ThumbnailTask';
+import {URL} from '../utils/functions';
 
 const Tasks = () => {
     //Variables et Fonctions du composant
@@ -18,7 +18,7 @@ const Tasks = () => {
     const getTasks = () => {
         axios
         //On récupère les taches
-        .get("http://127.0.0.1:8000/api/tasks?status=A%20faire&name=" + inputSearch)
+        .get(`${URL}api/tasks?status=A%20faire&name=` + inputSearch)
         //Puis on les charge dans tasksData via setTasksData
         .then((res)=>setTasksData(res.data['hydra:member']));
 

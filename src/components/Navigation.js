@@ -12,7 +12,7 @@ const Navigation = () => {
             <h3>Pyman Stock</h3>
             <ul className='nav justify-content-center'>
 
-                <NavLink to={"/accueil"} className={(nav) =>(nav.isActive ? "nav-active" : "")}>
+                <NavLink to={"/"} className={(nav) =>(nav.isActive ? "nav-active" : "")}>
                     <li className='nav-item'>Accueil</li>
                 </NavLink>
                 <NavLink to={"/taches"} className={(nav) =>(nav.isActive ? "nav-active" : "")}>

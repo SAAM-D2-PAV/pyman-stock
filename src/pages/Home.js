@@ -1,11 +1,14 @@
 import React from 'react';
 
 // made components
+import ConnectionModal from '../components/ConnectionModal';
 import Navigation from '../components/Navigation';
 
 const Home = () => {
     return (
         <div>
+
+            <ConnectionModal></ConnectionModal>
          
             <Navigation/>
             <div className="container">

@@ -3,8 +3,8 @@ import axios from "axios";
 import { Link } from 'react-router-dom';
 
 //Fonctions globales du composant AppFunction.js
-import { dateFormater } from './AppFunction';
-import { hourFormater } from './AppFunction';
+import { dateFormater } from '../../utils/functions';
+import { hourFormater } from '../../utils/functions';
 
 
 const ThumbnailTask = ({task}) => {

@@ -4,11 +4,12 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 // made components
-import Navigation from '../components/Navigation';
+import Navigation from '../Navigation';
 //Fonctions globales du composant AppFunction.js
-import { dateFormater, setEquipmentToTask } from './AppFunction';
-import { hourFormater } from './AppFunction';
-  
+import { dateFormater, setEquipmentToTask } from '../../utils/functions';
+import { hourFormater } from '../../utils/functions';
+import {URL} from '../../utils/functions';
+
 const Task = () => {
     //Variables et Fonctions du composant
     
@@ -21,7 +22,7 @@ const Task = () => {
     //lancé une fois le DOM chargé grave au []
    useEffect( () => {
        //On récupère la tache
-       axios.get(`http://127.0.0.1:8000/api/tasks/${id}`).then( 
+       axios.get(`${URL}api/tasks/${id}`).then( 
             (res)=> setTaskData(res.data),
         );
 

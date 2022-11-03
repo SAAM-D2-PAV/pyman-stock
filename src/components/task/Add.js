@@ -4,8 +4,9 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 // made components
-import Navigation from '../components/Navigation';
-import {setEquipmentToTask} from "./AppFunction";
+import Navigation from '../Navigation';
+import {setEquipmentToTask} from "../../utils/functions";
+import {URL} from '../../utils/functions';
 
 const Add = () => {
 
@@ -25,7 +26,7 @@ const Add = () => {
    const getEquipments = () => {
     axios
     //On récupère les equipements
-    .get("http://127.0.0.1:8000/api/equipment?identificationCode=" + inputSearch)
+    .get(`${URL}api/equipment?identificationCode=` + inputSearch)
     //Puis on les charge dans equipmentsData via setEquipmentsData
     .then((res)=>setEquipmentsData(res.data['hydra:member']));
 
@@ -34,7 +35,7 @@ const Add = () => {
     //lancé une fois le DOM chargé grace au callback []
     useEffect( () => {
         //On récupère la tache et on la stock dans taskData
-        axios.get(`http://127.0.0.1:8000/api/tasks/${id}`).then(
+        axios.get(`http://localhost:8000/api/tasks/${id}`).then(
             (res)=> setTaskData(res.data),
         );
 

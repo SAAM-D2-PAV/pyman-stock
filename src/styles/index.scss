@@ -6,7 +6,11 @@
 @import "./components/tasks";
 
 
-
+.connectionModal{
+   width: 80%;
+   margin: auto;
+   padding-top: 10px;
+}
 h1{
     color: $pastel_chart_0;
     margin: 35px 0;

@@ -4,6 +4,9 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
+
+//URL API
+export const URL = "http://localhost:8000/";
 //Formatage de la date
 export const dateFormater = (date) => {
     let newDate = new Date(date).toLocaleDateString("fr-FR", {
@@ -34,7 +37,7 @@ export const setEquipmentToTask = (action, tid, eid) => {
     };
 
     if (action === "addEq_ToTask"){
-        axios.put(`http://127.0.0.1:8000/apip/setEquipment`, { params }).then(
+        axios.put(`${URL}apip/setEquipment`, { params }).then(
             (res)=> {
                 
                 if (res.data === "linked"){
@@ -58,7 +61,7 @@ export const setEquipmentToTask = (action, tid, eid) => {
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-                axios.put(`http://127.0.0.1:8000/apip/setEquipment`, { params }).then(
+                axios.put(`${URL}apip/setEquipment`, { params }).then(
                     (res)=> {
                         Swal.fire('Retiré !', '', 'success')
                     }
@@ -70,3 +73,4 @@ export const setEquipmentToTask = (action, tid, eid) => {
           })
     }
 }
+

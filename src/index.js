@@ -16,8 +16,7 @@ import rootReducer from './reducers';
 const store = createStore(
      rootReducer,
 )
-
-
+const url = document.location.href;
 
 
 
