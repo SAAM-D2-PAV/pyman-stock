@@ -21,21 +21,26 @@
 .task p{
     color:$red_flag;
 }
-.task i{
-    color: white;
-}
+
 .task .card{
     margin-top: 20px;
 }
-
-
+.materialList .delAction{
+    color: $red_flag;
+    margin-right: 10px;
+}
+.materialList{
+    text-align: left;
+}
 .task .picture{
     margin: auto;
     width: 150px;
     height: 150px;
     background-image: url(../../assets/images/Bullet-journal-bro.svg);
 }
-
+.btn-warning{
+    margin-left: 5px;
+}
 
 @media screen and (max-width: 300px) {
     .task .picture{

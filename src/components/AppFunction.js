@@ -28,15 +28,15 @@ export const setEquipmentToTask = (action, tid, eid) => {
      type: 'GET',
      data: {action: value, parameter: param},
      url: '/ajaxCtl'*/
+     const params = {
+        action: action,
+        parameters: {tid,eid}
+    };
 
     if (action === "addEq_ToTask"){
-        const params = {
-            action: action,
-            parameters: {tid,eid}
-        };
         axios.put(`http://127.0.0.1:8000/apip/setEquipment`, { params }).then(
             (res)=> {
-
+                
                 if (res.data === "linked"){
                     Swal.fire({
                         title: 'Oups!',
@@ -48,6 +48,25 @@ export const setEquipmentToTask = (action, tid, eid) => {
                 }
             }
         );
-
+    }
+    else if(action === "RemEq_ToTask"){
+        Swal.fire({
+            title: 'Retirer le matériel de la tâche ?',
+            showDenyButton: true,
+            confirmButtonText: 'Oui',
+            denyButtonText: `Non`,
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                axios.put(`http://127.0.0.1:8000/apip/setEquipment`, { params }).then(
+                    (res)=> {
+                        Swal.fire('Retiré !', '', 'success')
+                    }
+                );
+            } 
+            else if (result.isDenied) {
+              Swal.fire('Annulé !', '', 'info')
+            }
+          })
     }
 }

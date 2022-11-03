@@ -79,7 +79,7 @@ const Add = () => {
 
                         <div className="input-group mt-3 col-md-4">
                             <span className="input-group-text"><i className="fa-solid fa-magnifying-glass"></i></span>
-                            <input type="text" className="form-control" placeholder="rechercher un equipment" onChange={(e) => setInputSearch(e.target.value)}/>
+                            <input type="text" className="form-control" placeholder="code d'identification matériel" onChange={(e) => setInputSearch(e.target.value)}/>
                         </div>
 
                         <div className="row g-2">

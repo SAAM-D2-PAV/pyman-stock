@@ -6,6 +6,7 @@ import Tasks from "./components/Tasks";
 import Task from './components/Task';
 import FormTemplate from './components/FormTemplate';
 import Add from './components/Add';
+
 const App = () => {
   return (
       <BrowserRouter>

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 // made components
 import Navigation from '../components/Navigation';
 //Fonctions globales du composant AppFunction.js
-import { dateFormater } from './AppFunction';
+import { dateFormater, setEquipmentToTask } from './AppFunction';
 import { hourFormater } from './AppFunction';
   
 const Task = () => {
@@ -43,27 +43,46 @@ const Task = () => {
                         <div className="col">
                             <div className="card">
                             
-                                <div className="card-body">
+                                <div className="">
                                     <div className="picture"></div>
                                     <h6>{ taskData.category && taskData.category.name }</h6>
                                     <p className="card-text"> {dateFormater(taskData.startDate)} - {hourFormater(taskData.startHour)}</p>
                                     <p className="card-text"> {dateFormater(taskData.endDate)} - {hourFormater(taskData.endHour)}</p>
                                     <i> { taskData.location && taskData.location.name} </i>
                                 </div>
+                                <h4 className=''>Matériel</h4>
                                 <ul className="list-group list-group-flush">
-                                    <h4 className='mt-3'>Matériel</h4>
-                                   {
-                                         taskData.equipment && taskData.equipment
-                                         .map((equipment) => <li key={equipment.id} className="list-group-item">{equipment.name}</li>)                               
-                                   }
+                                    
+                                    <div className="materialList"> 
+                                        {
+                                            taskData.equipment && taskData.equipment
+                                            .map((equipment) => 
+
+                                                <li key={equipment.id} className="list-group-item">
+                                                    <span className='delAction' onClick={ () => setEquipmentToTask('RemEq_ToTask',taskData.id,equipment.id) }><i className="fa-solid fa-trash"></i></span>
+                                                    {equipment.name}      
+                                                </li>
+                                            )                               
+                                        }
+                                   </div>
                                 </ul>
-                                <div className="card-body">
-                                    <button className="btn btn-success">
-                                        <Link to={`../tache/${taskData.id}/add`} className="linkBtn">
-                                             <i className='fa-solid fa-qrcode fa-3x'></i>
-                                        </Link>
-                                    </button>
-                                    <p>scan</p>
+                                <div className="card-body row">
+                                    <div className='col'>
+                                        <button className="btn btn-success">
+                                            <h6>SORTIE</h6>
+                                            <Link to={`../tache/${taskData.id}/add`} className="linkBtn">
+                                                <i className="fa-solid fa-barcode fa-3x"></i>
+                                            </Link>
+                                        </button>
+                                    </div>
+                                    <div className='col'>
+                                        <button className="btn btn-warning">
+                                            <h6>RETOUR</h6>
+                                            <Link to={`../tache/${taskData.id}/add`} className="linkBtn">   
+                                                <i className="fa-solid fa-barcode fa-3x"></i>
+                                            </Link>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
