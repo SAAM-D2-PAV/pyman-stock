@@ -8,7 +8,7 @@ import Navigation from '../Navigation';
 //Fonctions globales du composant AppFunction.js
 import { dateFormater, setEquipmentToTask } from '../../utils/functions';
 import { hourFormater } from '../../utils/functions';
-import {URL} from '../../utils/functions';
+
 
 const Task = () => {
     //Variables et Fonctions du composant
@@ -22,7 +22,7 @@ const Task = () => {
     //lancé une fois le DOM chargé grave au []
    useEffect( () => {
        //On récupère la tache
-       axios.get(`${URL}api/tasks/${id}`).then( 
+       axios.get(process.env.REACT_APP_URL+`api/tasks/${id}`).then( 
             (res)=> setTaskData(res.data),
         );
 

@@ -1,10 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-// made components
-
-
-
 const Navigation = () => {
     return (
         
