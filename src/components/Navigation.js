@@ -7,7 +7,6 @@ const Navigation = () => {
         <div className='navigation'>
             <h3>Pyman Stock</h3>
             <ul className='nav justify-content-center'>
-
                 <NavLink to={"/"} className={(nav) =>(nav.isActive ? "nav-active" : "")}>
                     <li className='nav-item'>Accueil</li>
                 </NavLink>

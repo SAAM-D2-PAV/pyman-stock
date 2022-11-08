@@ -4,12 +4,13 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useContext } from 'react';
-
+import AuthContext from "../context/AuthProvider";
+import {Navigate} from "react-router-dom";
 
 
 const ConnectionModal = () => {
 
-
+    const {setAuth} = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
@@ -39,19 +40,20 @@ const ConnectionModal = () => {
                     password:pwd
                 }),
                 {
-                    headers: {'Content-Type' : 'application/json'},
+                    headers: {'Content-Type' : 'application/json'}
                 }
-                
-            )
+            );
+            //return response.data;
+
+            const accessToken = response?.data?.token;
+            setAuth({accessToken});
             setUser('');
             setPwd('');
             setSuccess(true)
-            return response.data;
-            
 
         } catch (error) {
            if (!error?.response) {
-                setErrMsg('Le serveur de répond pas');
+                setErrMsg('Le serveur ne répond pas');
            }
            else if(error.response?.status === 400){
                 setErrMsg('Identifiants manquants');
@@ -70,10 +72,11 @@ const ConnectionModal = () => {
     return (
         <>
         { success ? (
-            <p className='m-3'>connecté</p>
+
+            <Navigate to={'/'}/>
 
         ):(
-           
+
         <div className='connectionModal'>
             <h3>Pyman Stock</h3>
             <p ref={errRef} className={ errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>

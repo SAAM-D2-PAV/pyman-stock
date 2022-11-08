@@ -1,5 +1,4 @@
 import React from 'react';
-
 // made components
 import Navigation from '../components/Navigation';
 

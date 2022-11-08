@@ -21,7 +21,6 @@ const Tasks = () => {
         .get(process.env.REACT_APP_URL+'api/tasks?status=A%20faire&name=' + inputSearch)
         //Puis on les charge dans tasksData via setTasksData
         .then((res)=>setTasksData(res.data['hydra:member']));
-
     }
     // Le useEffect se joue lorsque le composant est monté au chargement de la page
     // Ici on lance la fonction getTasks et on relance grace au callBack quand inputSearch est modifié
