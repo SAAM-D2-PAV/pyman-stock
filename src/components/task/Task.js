@@ -1,16 +1,20 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 // made components
 import Navigation from '../Navigation';
+import AuthContext from '../../context/AuthProvider';
 //Fonctions globales du composant AppFunction.js
 import { dateFormater, setEquipmentToTask } from '../../utils/functions';
 import { hourFormater } from '../../utils/functions';
 
 
 const Task = () => {
+    //Headers en-tête HTTP Authorization
+    const auth = useContext(AuthContext);
+
     //Variables et Fonctions du composant
     
     // We can use the `useParams` hook here to access
@@ -22,7 +26,7 @@ const Task = () => {
     //lancé une fois le DOM chargé grave au []
    useEffect( () => {
        //On récupère la tache
-       axios.get(process.env.REACT_APP_URL+`api/tasks/${id}`).then( 
+       axios.get(process.env.REACT_APP_URL+`api/tasks/${id}`,{headers: {'Authorization': 'Bearer '+auth.auth.accessToken}}).then( 
             (res)=> setTaskData(res.data),
         );
 
@@ -58,10 +62,23 @@ const Task = () => {
                                         {
                                             taskData.equipment && taskData.equipment
                                             .map((equipment) => 
-
+                                               
                                                 <li key={equipment.id} className="list-group-item">
-                                                    <span className='delAction' onClick={ () => setEquipmentToTask('RemEq_ToTask',taskData.id,equipment.id) }><i className="fa-solid fa-trash"></i></span>
-                                                    {equipment.name}      
+                                                    <span className='delAction' onClick={ () => setEquipmentToTask('RemEq_ToTask',taskData.id,equipment.id,auth) }><i className="fa-solid fa-trash"></i></span>
+
+                                                    {equipment.name} 
+
+                                                    {equipment.status == "Défectueux" ? (
+
+                                                   " Défectueux "
+                                                               
+                                                    ) : ("") }
+                                                    {equipment.missing == 1 ? (
+
+                                                    " Manquant "
+                                                                
+                                                    ) : ("") }
+                                                  
                                                 </li>
                                             )                               
                                         }

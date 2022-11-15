@@ -24,7 +24,7 @@ export const dateFormater = (date) => {
     return newHour;
 }
 //Fonction d'envoi des données au serveur via API
-export const setEquipmentToTask = (action, tid, eid) => {
+export const setEquipmentToTask = (action, tid, eid, token) => {
     /*dataType: "json",
      async: false,
      type: 'GET',
@@ -32,19 +32,36 @@ export const setEquipmentToTask = (action, tid, eid) => {
      url: '/ajaxCtl'*/
      const params = {
         action: action,
-        parameters: {tid,eid}
+        parameters: {tid,eid},
     };
 
     if (action === "addEq_ToTask"){
-        axios.put(`${process.env.REACT_APP_URL}apip/setEquipment`, { params }).then(
+        axios.put(`${process.env.REACT_APP_URL}apip/setEquipment`, { params }, {headers: {'Authorization': 'Bearer '+token.auth.accessToken}}).then(
             (res)=> {
-                
                 if (res.data === "linked"){
                     Swal.fire({
                         title: 'Oups!',
                         text: "Matériel déjà associé",
                         icon: 'warning',
                         confirmButtonText: 'Cool',
+                        denyButtonText: 'nope'
+                    })
+                }
+                else if(res.data.status === "Défectueux"){
+                    Swal.fire({
+                        title: 'Attention!',
+                        text: "Matériel indiqué défectueux",
+                        icon: 'warning',
+                        confirmButtonText: 'J\'ai compris',
+                        denyButtonText: 'nope'
+                    })
+                }
+                else if(res.data.missing === 1){
+                    Swal.fire({
+                        title: 'Attention!',
+                        text: "Matériel indiqué manquant",
+                        icon: 'warning',
+                        confirmButtonText: 'J\'ai compris',
                         denyButtonText: 'nope'
                     })
                 }
@@ -60,7 +77,7 @@ export const setEquipmentToTask = (action, tid, eid) => {
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-                axios.put(`${process.env.REACT_APP_URL}apip/setEquipment`, { params }).then(
+                axios.put(`${process.env.REACT_APP_URL}apip/setEquipment`, { params }, {headers: {'Authorization': 'Bearer '+token.auth.accessToken}}).then(
                     (res)=> {
                         Swal.fire('Retiré !', '', 'success')
                     }

@@ -1,14 +1,18 @@
 import axios from 'axios';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState,useContext} from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 // made components
+import AuthContext from '../../context/AuthProvider';
 import Navigation from '../Navigation';
 import {setEquipmentToTask} from "../../utils/functions";
 
 
 const Add = () => {
+
+    //Headers en-tête HTTP Authorization
+    const auth = useContext(AuthContext);
 
     //Variables et Fonctions du composant
     //Variable taskData (tableau vide) -> stockage de la tache
@@ -26,7 +30,7 @@ const Add = () => {
    const getEquipments = () => {
     axios
     //On récupère les equipements
-    .get(process.env.REACT_APP_URL+'api/equipment?identificationCode=' + inputSearch)
+    .get(process.env.REACT_APP_URL+'api/equipment?identificationCode=' + inputSearch, {headers: {'Authorization': 'Bearer '+auth.auth.accessToken}})
     //Puis on les charge dans equipmentsData via setEquipmentsData
     .then((res)=>setEquipmentsData(res.data['hydra:member']));
 
@@ -35,7 +39,7 @@ const Add = () => {
     //lancé une fois le DOM chargé grace au callback []
     useEffect( () => {
         //On récupère la tache et on la stock dans taskData
-        axios.get(process.env.REACT_APP_URL+`api/tasks/${id}`).then(
+        axios.get(process.env.REACT_APP_URL+`api/tasks/${id}`,{headers: {'Authorization': 'Bearer '+auth.auth.accessToken}}).then(
             (res)=> setTaskData(res.data),
         );
 
@@ -52,7 +56,7 @@ const Add = () => {
 
        if(equipmentsData){
            equipmentsData.map(
-               (e) => setEquipmentToTask("addEq_ToTask",Number(id),e.id)
+               (e) => setEquipmentToTask("addEq_ToTask",Number(id),e.id,auth)
            )
 
        }

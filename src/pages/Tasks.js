@@ -5,7 +5,7 @@ import axios from "axios";
 // made components
 import Navigation from '../components/Navigation';
 import ThumbnailTask from '../components/task/ThumbnailTask';
-import AuthContext from "../context/AuthProvider";
+import AuthContext from '../context/AuthProvider';
 
 
 const Tasks = () => {
@@ -23,9 +23,9 @@ const Tasks = () => {
         //On récupère les taches
         .get(process.env.REACT_APP_URL+'api/tasks?status=A%20faire&name=' + inputSearch, {headers: {'Authorization': 'Bearer '+auth.auth.accessToken}})
         //Puis on les charge dans tasksData via setTasksData
-        //.then((res)=>setTasksData(res.data['hydra:member']));
-            .then(res=>{
-                console.log(res.data)})
+        .then((res)=>setTasksData(res.data['hydra:member']));
+        //.then(res=>{
+        //       console.log(res.data)})
     }
     // Le useEffect se joue lorsque le composant est monté au chargement de la page
     // Ici on lance la fonction getTasks et on relance grace au callBack quand inputSearch est modifié

@@ -63,12 +63,14 @@ const ConnectionModal = () => {
             }
             else{
                 setErrMsg('Connexion impossible');
+                console.log(error.response);
             }
             errRef.current.focus();
         }
        
     }
 
+    
     return (
         <>
         { success ? (
