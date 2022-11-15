@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState, useRef} from 'react';
 import axios from "axios";
 
 
@@ -9,23 +9,41 @@ import AuthContext from '../context/AuthProvider';
 
 
 const Tasks = () => {
+    //Headers en-tête HTTP Authorization
+    const auth = useContext(AuthContext);
     //Variables et Fonctions du composant
+    //Gerstion des erreurs
+    const [errMsg, setErrMsg] = useState('');
+    const errRef = useRef();
     //Variable tasksData (tableau vide) -> stockage des taches récupérées par axios
     const [tasksData,setTasksData] = useState([]);
     //Variable initialement vide se remplie si le champs texte est modifié (recherche)
     const [inputSearch, setInputSearch] = useState("");
-    //Headers en-tête HTTP Authorization
-    const auth = useContext(AuthContext);
+    
 
+    
     //Requète vers API
     const getTasks = () => {
-        axios
+         axios 
         //On récupère les taches
-        .get(process.env.REACT_APP_URL+'api/tasks?status=A%20faire&name=' + inputSearch, {headers: {'Authorization': 'Bearer '+auth.auth.accessToken}})
+        .get(process.env.REACT_APP_URL+'api/tasks?status=A%20faire&name=' + inputSearch, {headers: {'Authorization': 'Bearer '+auth.auth.accessToken}}).catch(
+            function (error) {
+                if (error.response) {
+                  // la requête a été faite et le code de réponse du serveur n’est pas dans
+                  // la plage 2xx
+
+                  setErrMsg(error.response.data.message);
+                  errRef.current.focus();
+
+                } 
+              }
+        )
         //Puis on les charge dans tasksData via setTasksData
-        .then((res)=>setTasksData(res.data['hydra:member']));
-        //.then(res=>{
-        //       console.log(res.data)})
+        .then((res)=>{
+            setTasksData(res.data['hydra:member']);
+            setErrMsg('');
+        })
+
     }
     // Le useEffect se joue lorsque le composant est monté au chargement de la page
     // Ici on lance la fonction getTasks et on relance grace au callBack quand inputSearch est modifié
@@ -36,6 +54,13 @@ const Tasks = () => {
         
             <Navigation/>
             <div className="container text-center">
+
+
+                <div className={ errMsg ? "errmsg alert alert-warning alert-dismissible fade show" : "d-none"} role="alert">
+                    <strong>Holy guacamole!</strong> {errMsg} Veuillez vous reconnecter.
+                    <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={()=>window.location.reload(false)}></button>
+                </div>
+
 
                 <h3>Toutes les tâches à faire sur Pyman</h3>
                 <div className="picture mb-3"></div>

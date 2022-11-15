@@ -6,7 +6,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 import "./styles/index.scss";
 import 'animate.css';
 import {AuthProvider} from "./context/AuthProvider";
+import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 
+
+if (process.env.NODE_ENV === 'production') {
+  disableReactDevTools();
+}
 
 //redux
 //import reduce components here

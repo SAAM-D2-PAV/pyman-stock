@@ -1,19 +1,20 @@
 import axios from 'axios';
-import React, {useEffect, useState,useContext} from 'react';
+import React, {useEffect, useState,useContext, useRef} from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 // made components
-import AuthContext from '../../context/AuthProvider';
-import Navigation from '../Navigation';
-import {setEquipmentToTask} from "../../utils/functions";
+import AuthContext from '../context/AuthProvider';
+import Navigation from '../components/Navigation';
+import {setEquipmentToTask} from "../utils/functions";
 
 
 const Add = () => {
-
     //Headers en-tête HTTP Authorization
     const auth = useContext(AuthContext);
-
+    //Gerstion des erreurs
+    const [errMsg, setErrMsg] = useState('');
+    const errRef = useRef();
     //Variables et Fonctions du composant
     //Variable taskData (tableau vide) -> stockage de la tache
     const [taskData,setTaskData] = useState([]);
@@ -31,6 +32,18 @@ const Add = () => {
     axios
     //On récupère les equipements
     .get(process.env.REACT_APP_URL+'api/equipment?identificationCode=' + inputSearch, {headers: {'Authorization': 'Bearer '+auth.auth.accessToken}})
+    .catch(
+        function (error) {
+            if (error.response) {
+              // la requête a été faite et le code de réponse du serveur n’est pas dans
+              // la plage 2xx
+
+              setErrMsg(error.response.data.message);
+              errRef.current.focus();
+
+            } 
+          }
+        )
     //Puis on les charge dans equipmentsData via setEquipmentsData
     .then((res)=>setEquipmentsData(res.data['hydra:member']));
 
@@ -66,7 +79,12 @@ const Add = () => {
         <div className='add'>
              <Navigation/> 
              <div className="container text-center">
-        
+
+                <div className={ errMsg ? "errmsg alert alert-warning alert-dismissible fade show" : "d-none"} role="alert">
+                    <strong>Holy guacamole!</strong> {errMsg} Veuillez vous reconnecter.
+                    <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={()=>window.location.reload(false)}></button>
+                </div>
+
                 <h3>Scan tâche {taskData.id}</h3>
                 <h4 className='red_flag'> {taskData.name} </h4>
                 <div className="row">

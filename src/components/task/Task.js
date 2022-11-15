@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
@@ -14,9 +14,10 @@ import { hourFormater } from '../../utils/functions';
 const Task = () => {
     //Headers en-tête HTTP Authorization
     const auth = useContext(AuthContext);
-
     //Variables et Fonctions du composant
-    
+    //Gerstion des erreurs
+    const [errMsg, setErrMsg] = useState('');
+    const errRef = useRef();
     // We can use the `useParams` hook here to access
     // the dynamic pieces of the URL.
     const {id} = useParams();
@@ -26,7 +27,20 @@ const Task = () => {
     //lancé une fois le DOM chargé grave au []
    useEffect( () => {
        //On récupère la tache
-       axios.get(process.env.REACT_APP_URL+`api/tasks/${id}`,{headers: {'Authorization': 'Bearer '+auth.auth.accessToken}}).then( 
+       axios.get(process.env.REACT_APP_URL+`api/tasks/${id}`,{headers: {'Authorization': 'Bearer '+auth.auth.accessToken}})
+       .catch(
+        function (error) {
+            if (error.response) {
+              // la requête a été faite et le code de réponse du serveur n’est pas dans
+              // la plage 2xx
+
+              setErrMsg(error.response.data?.message);
+              errRef.current.focus();
+
+            } 
+          }
+        )
+       .then( 
             (res)=> setTaskData(res.data),
         );
 
@@ -39,7 +53,12 @@ const Task = () => {
                 <Navigation/> 
                 
                 <div className="container text-center">
-    
+
+                    <div className={ errMsg ? "errmsg alert alert-warning alert-dismissible fade show" : "d-none"} role="alert">
+                        <strong>Holy guacamole!</strong> {errMsg} Veuillez vous reconnecter.
+                        <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={()=>window.location.reload(false)}></button>
+                    </div>
+
                     <h3>Tâche {taskData.id}</h3>
                     <h4 className='red_flag'> {taskData.name} </h4>
                     {/*on vérifie l'existance de taskData.project avec && {taskData.project && taskData.project.name}*/}
@@ -70,13 +89,14 @@ const Task = () => {
 
                                                     {equipment.status == "Défectueux" ? (
 
-                                                   " Défectueux "
+                                                    
+                                                   <span className="badge text-bg-danger red_flag">Défectueux <i className="fa-solid fa-exclamation"></i></span>
                                                                
                                                     ) : ("") }
                                                     {equipment.missing == 1 ? (
 
-                                                    " Manquant "
-                                                                
+                                                     <span className="badge text-bg-danger red_flag">Manquant <i className="fa-solid fa-exclamation"></i></span>
+   
                                                     ) : ("") }
                                                   
                                                 </li>

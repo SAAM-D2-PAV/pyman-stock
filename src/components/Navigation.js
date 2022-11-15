@@ -7,16 +7,21 @@ import AuthContext from '../context/AuthProvider';
 
 
 const Navigation = () => {
-
+    //Authorization 
     const auth = useContext(AuthContext);
-  
+    const decoded =  auth?.auth.accessToken ? jwt_decode(auth.auth.accessToken) : undefined;
 
+    const loggedUser = decoded?.email || "Non connecté";
+   
+    const roles = decoded?.roles || [];
+    
     return (
       
            
             <div className='navigation'>
                 
                 <h3>Pyman Stock</h3>
+                <p className='loggedUser'> {loggedUser} </p>
                 
                 <ul className='nav justify-content-center'>
                     <NavLink to={"/"} className={(nav) =>(nav.isActive ? "nav-active" : "")}>
