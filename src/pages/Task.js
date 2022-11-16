@@ -4,11 +4,11 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 // made components
-import Navigation from '../Navigation';
-import AuthContext from '../../context/AuthProvider';
+import Navigation from '../components/Navigation';
+import AuthContext from '../context/AuthProvider';
 //Fonctions globales du composant AppFunction.js
-import { dateFormater, setEquipmentToTask } from '../../utils/functions';
-import { hourFormater } from '../../utils/functions';
+import { dateFormater, setEquipmentToTask } from '../utils/functions';
+import { hourFormater } from '../utils/functions';
 
 
 const Task = () => {
@@ -87,13 +87,13 @@ const Task = () => {
 
                                                     {equipment.name} 
 
-                                                    {equipment.status == "Défectueux" ? (
+                                                    {equipment.status === "Défectueux" ? (
 
                                                     
                                                    <span className="badge text-bg-danger red_flag">Défectueux <i className="fa-solid fa-exclamation"></i></span>
                                                                
                                                     ) : ("") }
-                                                    {equipment.missing == 1 ? (
+                                                    {equipment.missing === 1 ? (
 
                                                      <span className="badge text-bg-danger red_flag">Manquant <i className="fa-solid fa-exclamation"></i></span>
    

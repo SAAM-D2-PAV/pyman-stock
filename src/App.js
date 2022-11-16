@@ -4,7 +4,7 @@ import Login from './pages/Login';
 import About from './pages/About';
 import Home from './pages/Home';
 import Tasks from "./pages/Tasks";
-import Task from './components/task/Task';
+import Task from './pages/Task';
 import Add from './pages/Add';
 import {useContext} from "react";
 import AuthContext from "./context/AuthProvider";

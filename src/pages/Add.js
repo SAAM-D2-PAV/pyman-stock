@@ -3,6 +3,8 @@ import React, {useEffect, useState,useContext, useRef} from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+
+
 // made components
 import AuthContext from '../context/AuthProvider';
 import Navigation from '../components/Navigation';
@@ -88,7 +90,7 @@ const Add = () => {
                 <h3>Scan tâche {taskData.id}</h3>
                 <h4 className='red_flag'> {taskData.name} </h4>
                 <div className="row">
-                    <div className="col">
+                    <div className="col-12">
 
                         <div className="card">
                             <div className="card-body">
@@ -119,7 +121,10 @@ const Add = () => {
                             )
                         }
                         </div>
-                    </div>   
+                    </div> 
+                    <div className="col-12 mt-5">
+                       
+                    </div>  
                 </div>
             </div>
         </div>

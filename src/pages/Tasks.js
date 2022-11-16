@@ -63,7 +63,7 @@ const Tasks = () => {
 
 
                 <h3>Toutes les tâches à faire sur Pyman</h3>
-                <div className="picture mb-3"></div>
+                <div className="ts-picture mb-3"></div>
                
                 <div className="row">
                     <div className="col-md-4"></div>

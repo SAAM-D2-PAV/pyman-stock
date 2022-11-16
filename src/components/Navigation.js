@@ -19,9 +19,19 @@ const Navigation = () => {
       
            
             <div className='navigation'>
+                <div className="row">
+                    <div className='col-6'>
+                        <h3>Pyman Stock</h3>
+                        <p className='loggedUser'> {loggedUser} </p>
+                    </div>
+                    
+                    <div className='col-6 text-right'>
+                        <button className="btn btn-warning" onClick={()=>window.location.reload(false)}>
+                            <i className="fa-solid fa-right-from-bracket"></i>
+                        </button>
+                    </div>
+                </div>
                 
-                <h3>Pyman Stock</h3>
-                <p className='loggedUser'> {loggedUser} </p>
                 
                 <ul className='nav justify-content-center'>
                     <NavLink to={"/"} className={(nav) =>(nav.isActive ? "nav-active" : "")}>
@@ -40,11 +50,6 @@ const Navigation = () => {
                         </>
                         : null
                     }
-                    <div className='text-right'>
-                        <button className="btn btn-warning" onClick={()=>window.location.reload(false)}>
-                            <i className="fa-solid fa-right-from-bracket"></i>
-                        </button>
-                    </div>
                 </ul>
                 
             </div>

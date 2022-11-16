@@ -18,7 +18,6 @@ const ConnectionModal = () => {
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
-    
     useEffect( () => {
         userRef.current.focus()
     },[])
@@ -70,7 +69,6 @@ const ConnectionModal = () => {
        
     }
 
-    
     return (
         <>
         { success ? (
@@ -78,44 +76,50 @@ const ConnectionModal = () => {
             <Navigate to={'/'}/>
 
         ):(
+        <div>
+            <div className="alert alert-info" role="alert">
+                Bienvenue sur la version Beta de pyman stock !
+            </div>
+            <div className='connectionModal container'>
+                <h3>Pyman Stock</h3>
+                <p ref={errRef} className={ errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
 
-        <div className='connectionModal'>
-            <h3>Pyman Stock</h3>
-            <p ref={errRef} className={ errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
 
+                <form onSubmit={handleConnection}>
 
-            <form onSubmit={handleConnection}>
+                    <div className="mb-3">
+                        <label htmlFor='usermail' className="form-label"></label>
+                        <input 
+                            type="email" 
+                            className="form-control email" 
+                            ref={userRef}  
+                            id='usermail'
+                            placeholder='Adresse e-mail' 
+                            required 
+                            autoComplete='off'
+                            onChange={(e) => setUser(e.target.value)}
+                            value={user}
+                        />
+                    </div>
 
-                <div className="mb-3">
-                    <label htmlFor='usermail' className="form-label">Email</label>
-                    <input 
-                        type="email" 
-                        className="form-control" 
-                        ref={userRef}  
-                        id='usermail' 
-                        required 
-                        autoComplete='off'
-                        onChange={(e) => setUser(e.target.value)}
-                        value={user}
-                    />
-                </div>
+                    <div className="mb-3">
+                        <label htmlFor='password' className="form-label"></label>
+                        <input 
+                            type="password" 
+                            className="form-control" 
+                            id='password' 
+                            placeholder='Mot de passe' 
+                            required 
+                            onChange={(e) => setPwd(e.target.value)}
+                            value={pwd}
+                        />
+                    </div>
 
-                <div className="mb-3">
-                    <label htmlFor='password' className="form-label">Mot de passe</label>
-                    <input 
-                        type="password" 
-                        className="form-control" 
-                        id='password' 
-                        required 
-                        onChange={(e) => setPwd(e.target.value)}
-                        value={pwd}
-                    />
-                </div>
+                    <button type="submit" className="btn btn-primary">Se connecter</button>
 
-                <button type="submit" className="btn btn-primary">Se connecter</button>
+                </form>
 
-            </form>
-
+            </div>
         </div>
         )} </>
     );
