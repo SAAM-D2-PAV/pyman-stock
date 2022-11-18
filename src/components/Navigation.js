@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useContext } from 'react';
 import jwt_decode from "jwt-decode";
@@ -10,22 +10,27 @@ const Navigation = () => {
     //Authorization 
     const auth = useContext(AuthContext);
     const decoded =  auth?.auth.accessToken ? jwt_decode(auth.auth.accessToken) : undefined;
-
+    //heure d'expiration
+    const exp = decoded?.exp || undefined;
+    const expToTime = new Date(exp*1000);
+    const expiredTime = expToTime.toLocaleTimeString("fr-FR");
+    //mail user
     const loggedUser = decoded?.email || "Non connecté";
-   
+    //roles user
     const roles = decoded?.roles || [];
     
     return (
       
            
             <div className='navigation'>
-                <div className="row">
-                    <div className='col-6'>
+                <div className="">
+                    <div className='title'>
                         <h3>Pyman Stock</h3>
                         <p className='loggedUser'> {loggedUser} </p>
+                        <p className='logTimeOut'>Déconnexion automatique à {expiredTime} </p>
                     </div>
                     
-                    <div className='col-6 text-right'>
+                    <div className='logout'>
                         <button className="btn btn-warning" onClick={()=>window.location.reload(false)}>
                             <i className="fa-solid fa-right-from-bracket"></i>
                         </button>

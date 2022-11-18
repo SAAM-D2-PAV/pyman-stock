@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 
-
 // made components
 import AuthContext from '../context/AuthProvider';
 import Navigation from '../components/Navigation';
@@ -25,9 +24,10 @@ const Add = () => {
     //Variable equipmentData (tableau vide) -> récupération du matériel récupérée par axios
     const [equipmentsData,setEquipmentsData] = useState([]);
 
-    // We can use the `useParams` hook here to access
+     // We can use the `useParams` hook here to access
     // the dynamic pieces of the URL.
     const {id} = useParams();
+    
 
     //Requète vers API
    const getEquipments = () => {
@@ -123,7 +123,7 @@ const Add = () => {
                         </div>
                     </div> 
                     <div className="col-12 mt-5">
-                       
+                   
                     </div>  
                 </div>
             </div>

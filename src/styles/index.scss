@@ -12,10 +12,30 @@ h1{
     margin: 35px 0;
 }
 h3{
-    margin: 0 0 20px 0;
+    margin: 0 0 15px 0;
 }
+.navigation h3{
+    margin: 5px 0 0 0;
+    color: $blue_chart_0;
+  
+  }
 .loggedUser{
     font-size: smaller;
-   margin-left: 15px;
-   color: $green_chart_0;
+    color: white;
+   
+}
+.logTimeOut{
+    color: $green_chart_0;
+}
+.title{
+    font-size: smaller;
+    margin-left: 15px;
+    color: $green_chart_0;
+    display: inline-block;
+}
+.logout{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    display: inline-block;
 }

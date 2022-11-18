@@ -6364,9 +6364,9 @@
   "version" "1.0.1"
 
 "mini-css-extract-plugin@^2.4.5":
-  "integrity" "sha512-wd+SD57/K6DiV7jIR34P+s3uckTRuQvx0tKPcvjFlrEylk6P4mQ2KSWk1hblj1Kxaqok7LogKOieygXqBczNlg=="
-  "resolved" "https://registry.npmjs.org/mini-css-extract-plugin/-/mini-css-extract-plugin-2.6.1.tgz"
-  "version" "2.6.1"
+  "integrity" "sha512-auqtVo8KhTScMsba7MbijqZTfibbXiBNlPAQbsVt7enQfcDYLdgG57eGxMqwVU3mfeWANY4F1wUg+rMF+ycZgw=="
+  "resolved" "https://registry.npmjs.org/mini-css-extract-plugin/-/mini-css-extract-plugin-2.7.0.tgz"
+  "version" "2.7.0"
   dependencies:
     "schema-utils" "^4.0.0"
 
