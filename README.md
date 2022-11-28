@@ -1,6 +1,6 @@
 # GDP | PYMAN STOCK 
 ## Gestion du stock audiovisuel 
-> version Alpha - 2022205
+> version Alpha - 2022211
 <br/></br>
 Pyman stock est une application développée par le pôle audiovisuel du SAAM D2 (service de l'action administrative et des moyens) de l'administration centrale. https://www.education.gouv.fr/service-de-l-action-administrative-et-des-moyens-saam-6818
 
@@ -8,6 +8,26 @@ Le service de l'action administrative et des moyens assure la gestion administra
 
 
 ## Installation
+
+```sh
+git clone 
+```
+
+```sh
+touch .env
+```
+puis ajouter les variables suivantes au fichier .env :
+```sh
+REACT_APP_URL=https://localhost:8000/ -> lien API
+REACT_APP_CONNEXION_URL=https://localhost:8000/api/login_check -> lien de connexion API
+```
+```sh
+npm install
+```
+
+
+
+
 
 ### `npm start`
 
