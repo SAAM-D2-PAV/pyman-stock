@@ -10,7 +10,7 @@ Le service de l'action administrative et des moyens assure la gestion administra
 ## Installation
 
 ```sh
-git clone 
+git clone git@github.com:SAAM-D2-PAV/pyman-stock.git
 ```
 
 ```sh
