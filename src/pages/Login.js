@@ -62,8 +62,8 @@ const ConnectionModal = () => {
             }
             else{
                 setErrMsg('Connexion impossible');
-                console.log(error.response);
             }
+            console.log(error.response);
             errRef.current.focus();
         }
        
