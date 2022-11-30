@@ -52,6 +52,7 @@ const ConnectionModal = () => {
 
         } catch (error) {
            if (!error?.response) {
+                console.log(error.response);
                 setErrMsg('Le serveur ne répond pas');
            }
            else if(error.response?.status === 400){
