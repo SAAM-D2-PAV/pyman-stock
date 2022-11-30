@@ -26,6 +26,14 @@ const Navigation = () => {
                 <div className="">
                     <div className='title'>
                         <h3>Pyman Stock</h3>
+                       
+
+                        {process.env.NODE_ENV === 'development' ? (
+
+                            <small>You are running this application in <b>{process.env.NODE_ENV}</b> mode.</small>
+                                    
+                        ) : ("") }
+                        
                         <p className='loggedUser'> {loggedUser} </p>
                         <p className='logTimeOut'>Déconnexion automatique à {expiredTime} </p>
                     </div>
