@@ -52,7 +52,6 @@ const ConnectionModal = () => {
 
         } catch (error) {
            if (!error?.response) {
-                console.log(error.response);
                 setErrMsg('Le serveur ne répond pas');
            }
            else if(error.response?.status === 400){
@@ -64,7 +63,6 @@ const ConnectionModal = () => {
             else{
                 setErrMsg('Connexion impossible');
             }
-            console.log(error.response);
             errRef.current.focus();
         }
        
