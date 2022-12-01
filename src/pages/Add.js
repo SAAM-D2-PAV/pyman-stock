@@ -9,6 +9,8 @@ import AuthContext from '../context/AuthProvider';
 import Navigation from '../components/Navigation';
 import {setEquipmentToTask} from "../utils/functions";
 
+import Scanner from '../components/scanner/Scanner';
+
 
 const Add = () => {
     //Headers en-tête HTTP Authorization
@@ -24,7 +26,10 @@ const Add = () => {
     //Variable equipmentData (tableau vide) -> récupération du matériel récupérée par axios
     const [equipmentsData,setEquipmentsData] = useState([]);
 
-     // We can use the `useParams` hook here to access
+    //BARCODE ELEMENTS
+    const [scanning, setScanning] = useState(false);
+    const scannerRef = useRef(null);
+    // We can use the `useParams` hook here to access
     // the dynamic pieces of the URL.
     const {id} = useParams();
     
@@ -89,25 +94,53 @@ const Add = () => {
 
                 <h3>Scan tâche {taskData.id}</h3>
                 <h4 className='red_flag'> {taskData.name} </h4>
+
                 <div className="row">
-                    <div className="col-12">
+                
+                    <div className="col text-center" >
+                        
 
-                        <div className="card">
-                            <div className="card-body">
-                                <button className="btn btn-warning">
-                                    <Link to={`../tache/${taskData.id}`} className="linkBtn">
-                                        <i className="fa-solid fa-arrow-left"></i> RETOUR
-                                    </Link>
-                                </button>
-                            </div>
+                        <button className="btn btn-success mb-2" onClick={() => setScanning(!scanning) }>{scanning ? 'Stop' : 'Scanner'}</button>
+            
+                        
+                        <div ref={scannerRef} style={{position: 'relative', border: '1px solid #E1000F'}}>
+
+                            {scanning ?
+                                <canvas className="drawingBuffer" style={{
+                                    position: 'absolute',
+                                    top: '0px',
+                                    // left: '0px',
+                                    // height: '100%',
+                                    // width: '100%',
+                                    border: '3px solid #169B62',
+                                }} width="640" height="480" />
+                            : ""}
+
+                            {scanning ? <Scanner scannerRef={scannerRef} onDetected={(result) => setInputSearch(result)} /> : null}
+
                         </div>
+                        
+                    </div>
 
-                        <div className="input-group mt-3 col-md-4">
+                    <div className="col-12 mt-2">
+                        <p>Ou taper le code d'identification matériel</p>
+                        <div className="input-group mt-3 col-md-4 mb-2">
                             <span className="input-group-text"><i className="fa-solid fa-magnifying-glass"></i></span>
-                            <input type="text" className="form-control" placeholder="code d'identification matériel" onChange={(e) => setInputSearch(e.target.value)}/>
+                            <input type="text" className="form-control" placeholder="ex: 100286" onChange={(e) => setInputSearch(e.target.value)}/>
                         </div>
-
-                        <div className="row g-2">
+                        <div className="mb-2">
+                            <button className="btn btn-warning">
+                                <Link to={`../tache/${taskData.id}`} className="linkBtn">
+                                    <i className="fa-solid fa-arrow-left"></i> RETOUR
+                                </Link>
+                            </button>
+                        </div>
+                        
+                    </div> 
+                    <div className="col-12 mt-2">
+                     
+                    </div>  
+                    <div className="row g-2">
 
                         {
                             //Boucle sur le tableau equipmentsData[]
@@ -120,11 +153,7 @@ const Add = () => {
                                 
                             )
                         }
-                        </div>
-                    </div> 
-                    <div className="col-12 mt-5">
-                   
-                    </div>  
+                    </div>
                 </div>
             </div>
         </div>
