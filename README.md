@@ -51,7 +51,7 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `Comment ça fonctionne ?`
-
+Grâce à https://www.npmjs.com/package/@ericblade/quagga2 🤘
 <ul>
  <li>
     1 - Naviguer dans l'onglet tâches. ⛵
