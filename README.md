@@ -26,9 +26,6 @@ npm install
 ```
 
 
-
-
-
 ### `npm start`
 
 
@@ -53,3 +50,23 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `Comment ça fonctionne ?`
+
+<ul>
+ <li>
+    1 - Naviguer dans l'onglet tâches. ⛵
+</li>
+<li>
+    2 - Rechercher une tâche par son intitulé. 👀
+</li>
+<li>
+    3 - Selectionner  <em>"Sortie"</em>. 🛫
+</li>
+<li>
+    4 - Scanner le code barres ou taper le numéro du matériel pour l'ajouter à la tâche, le nom s'affiche et est ajouté automatiquement. ✅
+</li>
+<li>
+    5 - Procéder de même pour tout le matériel. ➿
+</li>
+<li>6 - Voilà c'est terminé, bye. &#128526;</li>
+</ul>

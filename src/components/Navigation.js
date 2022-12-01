@@ -25,7 +25,7 @@ const Navigation = () => {
             <div className='navigation'>
                 <div className="">
                     <div className='title'>
-                        <h3>Pyman Stock</h3>
+                        <h3>❴ Pyman Stock ❵</h3>
                        
 
                         {process.env.NODE_ENV === 'development' ? (
@@ -52,7 +52,7 @@ const Navigation = () => {
                     </NavLink>
                 
                     <NavLink to={"/a-propos"} className={(nav) =>(nav.isActive ? "nav-active" : "")}>
-                        <li className='nav-item'>A propos</li>
+                        <li className='nav-item'>À propos</li>
                     </NavLink>
                     {
                         auth ? 
