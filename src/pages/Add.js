@@ -103,7 +103,7 @@ const Add = () => {
                         <button className="btn btn-success mb-2" onClick={() => setScanning(!scanning) }>{scanning ? 'Stop' : 'Scanner'}</button>
             
                         
-                        <div ref={scannerRef} style={{position: 'relative',overflow:'hidden',right:'720px'}}>
+                        <div ref={scannerRef} style={{position: 'relative',right:'720px'}}>
                              
                             {scanning ?
                             <>
