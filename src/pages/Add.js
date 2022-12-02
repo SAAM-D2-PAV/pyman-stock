@@ -113,7 +113,7 @@ const Add = () => {
                                     // height: '100%',
                                     // width: '100%',
                                     border: '3px solid #169B62',
-                                }} width="640" height="480" />
+                                }}  />
                             : ""}
 
                             {scanning ? <Scanner scannerRef={scannerRef} onDetected={(result) => setInputSearch(result)} /> : null}
