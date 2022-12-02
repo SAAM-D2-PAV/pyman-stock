@@ -18,12 +18,12 @@ function getMedianOfCodeErrors(decodedCodes) {
 }
 
 const defaultConstraints = {
-    width: 360,
-    height: 1920,
+    width: 1920,
+    height: 200,
 };
 
 const defaultLocatorSettings = {
-    patchSize: 'medium',
+    patchSize: 'x-small',
     halfSample: true,
 };
 

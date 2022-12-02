@@ -103,19 +103,25 @@ const Add = () => {
                         <button className="btn btn-success mb-2" onClick={() => setScanning(!scanning) }>{scanning ? 'Stop' : 'Scanner'}</button>
             
                         
-                        <div ref={scannerRef} style={{position: 'relative', border: '1px solid #E1000F'}}>
-
+                        <div ref={scannerRef} style={{position: 'relative',overflow:'hidden',right:'720px'}}>
+                             
                             {scanning ?
+                            <>
+                                 
                                 <canvas className="drawingBuffer" style={{
                                     position: 'absolute',
                                     top: '0px',
-                                    // left: '0px',
-                                    // height: '100%',
-                                    // width: '100%',
+                                     right: '0px',
+                                     height: '100%',
+                                     width: '100%',
                                     border: '3px solid #169B62',
-                                }}  />
-                            : ""}
-
+                                   
+                                }} />
+                            </>
+                            : 
+                            ""
+                            }
+                           
                             {scanning ? <Scanner scannerRef={scannerRef} onDetected={(result) => setInputSearch(result)} /> : null}
 
                         </div>
