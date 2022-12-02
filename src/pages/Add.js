@@ -120,7 +120,7 @@ const Add = () => {
 
                         :""}
 
-{scanning ? <Scanner scannerRef={scannerRef} onDetected={(result) =>setInputSearch(result)} /> : null}
+                        {scanning ? <Scanner scannerRef={scannerRef} onDetected={(result) =>alert(result)} /> : null}
                     </div>
 
                     <div className="col-12 mt-2">
