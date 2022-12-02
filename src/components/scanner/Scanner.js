@@ -18,8 +18,8 @@ function getMedianOfCodeErrors(decodedCodes) {
 }
 
 const defaultConstraints = {
-    width: 300,
-    height: 150,
+    width: 1080,
+    height: 1920,
 };
 
 const defaultLocatorSettings = {
