@@ -11,7 +11,6 @@ import {setEquipmentToTask} from "../utils/functions";
 
 import Scanner from '../components/scanner/Scanner';
 
-
 const Add = () => {
     //Headers en-tête HTTP Authorization
     const auth = useContext(AuthContext);
@@ -28,6 +27,7 @@ const Add = () => {
 
     //BARCODE ELEMENTS
     const [scanning, setScanning] = useState(false);
+
     const scannerRef = useRef(null);
     // We can use the `useParams` hook here to access
     // the dynamic pieces of the URL.
@@ -101,26 +101,30 @@ const Add = () => {
                         
 
                         <button className="btn btn-success mb-2" onClick={() => setScanning(!scanning) }>{scanning ? 'Stop' : 'Scanner'}</button>
-            
+                       
                         {scanning ?
 
-                        <div ref={scannerRef} style={{position: 'relative', border: '3px solid red'}}>
-                            {/* <video style={{ width: window.innerWidth, height: 480, border: '3px solid orange' }}/> */}
-                            <canvas className="drawingBuffer" style={{
-                                position: 'absolute',
-                                top: '0px',
-                                left: '0px',
-                                height: '100%',
-                                 width: '100%',
-                                border: '3px solid green',
-                                overflow:'hidden'
-                            }} width="1920" height="1080" />
-                           
-                        </div>
+                            <div ref={scannerRef} style={{position: 'relative', border: '3px solid red'}}>
+                                {/* <video style={{ width: window.innerWidth, height: 480, border: '3px solid orange' }}/> */}
+                                <canvas className="drawingBuffer" style={{
+                                    position: 'absolute',
+                                    //top: '0',
+                                    left: '0',
+                                    height: '100%',
+                                    width: '100%',
+                                    border: '3px solid green',
+                                    overflow:'hidden'
+                                }} width="1920" height="1080" />
+                            
+                            </div>
 
-                        :""}
+                        :   ""}
 
-                        {scanning ? <Scanner scannerRef={scannerRef} onDetected={(result) =>alert(result)} /> : null}
+                        {scanning ? 
+                            
+                            <Scanner scannerRef={scannerRef} onDetected={(result) => alert([result])}/> 
+                        : null}
+                            
                     </div>
 
                     <div className="col-12 mt-2">

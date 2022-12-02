@@ -28,17 +28,12 @@ const defaultLocatorSettings = {
 };
 
 const defaultDecoders = [
-    'ean_reader',
-    'code_128_reader',
-    'ean_8_reader',
+    
+    
     'code_39_reader',
     'code_39_vin_reader',
-    'codabar_reader',
-    'upc_reader',
-    'upc_e_reader',
-    'i2of5_reader',
-    '2of5_reader',
-    'code_93_reader'
+  
+   
 ];
 
 const Scanner = ({
@@ -79,7 +74,7 @@ const Scanner = ({
                 });
             }
             if (result.box) {
-                Quagga.ImageDebug.drawPath(result.box, { x: 0, y: 1 }, drawingCtx, { color: 'blue', lineWidth: 2 });
+                Quagga.ImageDebug.drawPath(result.box, { x: 0, y: 1 }, drawingCtx, { color: 'red', lineWidth: 2 });
             }
             if (result.codeResult && result.codeResult.code) {
                 // const validated = barcodeValidator(result.codeResult.code);
@@ -115,7 +110,7 @@ const Scanner = ({
             Quagga.onProcessed(handleProcessed);
 
             if (err) {
-                return console.log('Error starting Quagga:', err);
+                
             }
             if (scannerRef && scannerRef.current) {
                 Quagga.start();
