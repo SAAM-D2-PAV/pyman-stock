@@ -102,30 +102,25 @@ const Add = () => {
 
                         <button className="btn btn-success mb-2" onClick={() => setScanning(!scanning) }>{scanning ? 'Stop' : 'Scanner'}</button>
             
-                        
-                        <div ref={scannerRef} style={{position: 'relative',right:'720px'}}>
-                             
-                            {scanning ?
-                            <>
-                                 
-                                <canvas className="drawingBuffer" style={{
-                                    position: 'absolute',
-                                    top: '0px',
-                                     right: '0px',
-                                     height: '100%',
-                                     width: '100%',
-                                    border: '3px solid #169B62',
-                                   
-                                }} />
-                            </>
-                            : 
-                            ""
-                            }
-                           
-                            {scanning ? <Scanner scannerRef={scannerRef} onDetected={(result) => setInputSearch(result)} /> : null}
+                        {scanning ?
 
+                        <div ref={scannerRef} style={{position: 'relative', border: '3px solid red'}}>
+                            {/* <video style={{ width: window.innerWidth, height: 480, border: '3px solid orange' }}/> */}
+                            <canvas className="drawingBuffer" style={{
+                                position: 'absolute',
+                                top: '0px',
+                                left: '0px',
+                                height: '100%',
+                                 width: '100%',
+                                border: '3px solid green',
+                                overflow:'hidden'
+                            }} width="1920" height="1080" />
+                           
                         </div>
-                        
+
+                        :""}
+
+{scanning ? <Scanner scannerRef={scannerRef} onDetected={(result) =>setInputSearch(result)} /> : null}
                     </div>
 
                     <div className="col-12 mt-2">

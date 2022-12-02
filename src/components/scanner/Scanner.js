@@ -18,12 +18,12 @@ function getMedianOfCodeErrors(decodedCodes) {
 }
 
 const defaultConstraints = {
-    width: 1920,
-    height: 200,
+    width: 360,
+    height: 1080,
 };
 
 const defaultLocatorSettings = {
-    patchSize: 'x-small',
+    patchSize: 'small',
     halfSample: true,
 };
 
@@ -115,7 +115,7 @@ const Scanner = ({
             Quagga.onProcessed(handleProcessed);
 
             if (err) {
-                
+                return console.log('Error starting Quagga:', err);
             }
             if (scannerRef && scannerRef.current) {
                 Quagga.start();
