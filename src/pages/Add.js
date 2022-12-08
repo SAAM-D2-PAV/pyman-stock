@@ -122,7 +122,7 @@ const Add = () => {
 
                         {scanning ? 
                             
-                            <Scanner scannerRef={scannerRef} onDetected={(result) => alert([result])}/> 
+                            <Scanner scannerRef={scannerRef} key={id} onDetected={(result) => console.log(result)}/> 
                         : null}
                             
                     </div>

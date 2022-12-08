@@ -65,6 +65,9 @@ export const setEquipmentToTask = (action, tid, eid, token) => {
                         denyButtonText: 'nope'
                     })
                 }
+                else{
+                    alert('Ajouté')
+                }
             }
         );
     }
