@@ -25,7 +25,8 @@ function getMedianOfCodeErrors(decodedCodes) {
      
 const defaultConstraints = {
     width: 360,
-    height: 1080,
+    height: 1080
+    ,
 };
 
 const defaultLocatorSettings = {
@@ -35,6 +36,8 @@ const defaultLocatorSettings = {
 
 const defaultDecoders = [
     'code_39_reader',
+    'code_39_vin_reader',
+    'codabar_reader'
 ];
 
 
