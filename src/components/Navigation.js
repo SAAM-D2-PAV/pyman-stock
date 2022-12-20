@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate } from 'react-router-dom';
 import { useContext } from 'react';
 import jwt_decode from "jwt-decode";
 // made components
@@ -47,22 +47,26 @@ const Navigation = () => {
                 
                 
                 <ul className='nav justify-content-center'>
-                    <NavLink to={"/"} className={(nav) =>(nav.isActive ? "nav-active" : "")}>
-                        <li className='nav-item'>Accueil</li>
-                    </NavLink>
-                
-                    <NavLink to={"/a-propos"} className={(nav) =>(nav.isActive ? "nav-active" : "")}>
-                        <li className='nav-item'>À propos</li>
-                    </NavLink>
+
+                    
                     {
                         auth ? 
                         <>
+                            <NavLink to={"/"} className={(nav) =>(nav.isActive ? "nav-active" : "")}>
+                                <li className='nav-item'>Accueil</li>
+                            </NavLink>
+                        
+                            <NavLink to={"/a-propos"} className={(nav) =>(nav.isActive ? "nav-active" : "")}>
+                                <li className='nav-item'>À propos</li>
+                            </NavLink>
                             <NavLink to={"/taches"} className={(nav) =>(nav.isActive ? "nav-active" : "")}>
                                 <li className='nav-item'>Tâches</li>
                             </NavLink>
                         </>
-                        : null
+                        : <Navigate to="/connexion" />
                     }
+
+
                 </ul>
                 
             </div>

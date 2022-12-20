@@ -6,6 +6,7 @@ import axios from "axios";
 import Navigation from '../components/Navigation';
 import ThumbnailTask from '../components/task/ThumbnailTask';
 import AuthContext from '../context/AuthProvider';
+import Loading from '../components/Loading';
 
 
 const Tasks = () => {
@@ -19,12 +20,13 @@ const Tasks = () => {
     const [tasksData,setTasksData] = useState([]);
     //Variable initialement vide se remplie si le champs texte est modifié (recherche)
     const [inputSearch, setInputSearch] = useState("");
-    
-
+    //Variable de chargement
+    const [loading,setLoading] = useState(false);
     
     //Requète vers API
     const getTasks = () => {
-         axios 
+        setLoading(true);
+        axios 
         //On récupère les taches
         .get(process.env.REACT_APP_URL+'api/tasks?status=A%20faire&name=' + inputSearch, {headers: {'Authorization': 'Bearer '+auth.auth.accessToken}}).catch(
             function (error) {
@@ -42,6 +44,7 @@ const Tasks = () => {
         .then((res)=>{
             setTasksData(res.data['hydra:member']);
             setErrMsg('');
+            setLoading(false)
         })
 
     }
@@ -78,6 +81,8 @@ const Tasks = () => {
                 <div className="row g-2">
 
                         {
+                            loading ? <Loading/> : 
+                           
                             //Boucle sur le tableau de tasks tasksData[]
                             tasksData && tasksData
                                 //classer les tâches par dates
